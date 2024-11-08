@@ -1,0 +1,16 @@
+{
+    "ItemList":[
+        {
+            "id":0,
+            "name":"tempitem1",
+            "type":"use",
+            "etc":"0"
+        },
+        {
+            "id":1,
+            "name":"tempitem2",
+            "type":"use",
+            "etc":"2"
+        }
+    ]
+}
