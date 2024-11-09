@@ -14,6 +14,7 @@ enum EndingType{
 public class ToEnding : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] ConvSystem convSystem;
+    [SerializeField] GameObject hardModeObj;
     EndingType endingType = EndingType.NORMAL;
     int endingNum = 0;
     public void OnPointerClick(PointerEventData eventData)
@@ -52,6 +53,12 @@ public class ToEnding : MonoBehaviour, IPointerClickHandler
 
     void ToEndScene()
     {
+        AchieveManager.achvManager.StopTimer();
+        AchieveManager.achvManager.NewEnding((int)endingType,endingNum);
+        AchieveManager.achvManager.AppendNewAchieve();
+        PlayerDataManager.pdata.ClearPlayerData();
+        Inventory.imanager.ClearSlot();
+        hardModeObj.SetActive(true);
         if (endingType == EndingType.NORMAL && endingNum == 2)
         {
             SceneManager.LoadScene("Ending3_Normal2");

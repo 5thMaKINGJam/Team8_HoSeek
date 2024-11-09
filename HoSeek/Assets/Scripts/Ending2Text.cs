@@ -28,6 +28,6 @@ public class Ending2Text : MonoBehaviour
             yield return new WaitForSeconds(0.06f);
         }
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("InitialScene");
     }
 }

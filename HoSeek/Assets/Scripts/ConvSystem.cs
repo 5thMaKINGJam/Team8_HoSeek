@@ -90,6 +90,7 @@ public class ConvSystem : MonoBehaviour
                 currIdx = PlayerDataManager.pdata.isInt()?5004:5005;
                 Debug.Log("Int: "+PlayerDataManager.pdata.isInt());
                 PlayerDataManager.pdata.isHurt = true;
+                AchieveManager.achvManager.GetHurt();
                 if (PlayerDataManager.pdata.isHardMode){
 
                     timeAttack.Penalty();
@@ -100,6 +101,9 @@ public class ConvSystem : MonoBehaviour
         }
         else if((currIdx==8001 || currIdx==8002)&&num==0){
             chooseEnding.SwapItem();
+        }
+        else if(currIdx==1001&&num==0){
+            AchieveManager.achvManager.EatMeat();
         }
         currIdx = choiceScripts[choiceIdx].choiceGoto[num];
         SetConv(currIdx);   

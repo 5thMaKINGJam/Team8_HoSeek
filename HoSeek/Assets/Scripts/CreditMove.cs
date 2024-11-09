@@ -41,14 +41,14 @@ public class CreditMove : MonoBehaviour
 
         if (canClick && Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("InitialScene");
         }
     }
 
     IEnumerator LoadMainScene()
     {
         yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("InitialScene");
     }
 
     IEnumerator EnableClick()

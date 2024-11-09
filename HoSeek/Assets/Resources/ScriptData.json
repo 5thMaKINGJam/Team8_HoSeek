@@ -275,7 +275,7 @@
         {
             "id":8001,
             "illustNum":-1,
-            "choiceId":4,
+            "choiceId":5,
             "scriptType":"CHOICE",
             "script":"현재 가진 것을 버리고 이걸 가져갈까?",
             "nextGoto":-1
@@ -283,7 +283,7 @@
         {
             "id":8002,
             "illustNum":-1,
-            "choiceId":5,
+            "choiceId":6,
             "scriptType":"CHOICE",
             "script":"현재 가진 것을 원래 자리에 두고 이걸 가져갈까?",
             "nextGoto":-1
