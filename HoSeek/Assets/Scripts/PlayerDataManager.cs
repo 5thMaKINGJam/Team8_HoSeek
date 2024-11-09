@@ -23,8 +23,8 @@ public class PlayerDataManager : MonoBehaviour
     }
 
     public int int_stat { get; private set; } = 0;
-    public int str_stat { get; private set; } = 5;
-    public int wis_stat { get; private set; } = 0;
+    public int str_stat { get; private set; } = 0;
+    public int wis_stat { get; private set; } = 5;
 
     public void SetStat(int Int,int Str,int Wis){
         int_stat = Int;

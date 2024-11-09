@@ -20,7 +20,7 @@ public class BreakObject : MonoBehaviour, IPointerClickHandler
     {
         convSystem.gameObject.SetActive(true);
         if(isBroken && Inventory.imanager.getId()==0){
-            Inventory.imanager.UseItem();
+            Inventory.imanager.ClearSlot();
             convSystem.SetConv(7003);
         }
         else if(!isBroken&&PlayerDataManager.pdata.isStr()){

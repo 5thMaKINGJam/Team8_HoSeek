@@ -6,6 +6,7 @@ using UnityEngine;
 public class TimeAttack : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] ToEnding toEnding;
     bool setTime = false;
     int min = 0;
     int sec = 0;
@@ -46,7 +47,7 @@ public class TimeAttack : MonoBehaviour
         else{
             currTime = 0;
             SetTimeText(currTime);
-            Debug.Log("Time Over");
+            toEnding.TimeoutEinding();
         }
     }
 

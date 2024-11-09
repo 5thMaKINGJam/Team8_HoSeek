@@ -13,6 +13,9 @@ public class HardMode : MonoBehaviour,IPointerClickHandler
 
     void Start(){
         timeAttack.gameObject.SetActive(false);
+        if(!PlayerDataManager.pdata.isWis()){
+            gameObject.SetActive(false);
+        }
     }
     public void ShowIllust(){
         imagePannel[cnt].gameObject.SetActive(true);
@@ -27,6 +30,7 @@ public class HardMode : MonoBehaviour,IPointerClickHandler
         imagePannel[cnt].gameObject.SetActive(false);
         timeAttack.gameObject.SetActive(true);
         timeAttack.SetTime();
+        gameObject.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
