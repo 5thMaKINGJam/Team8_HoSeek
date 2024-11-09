@@ -1,0 +1,22 @@
+{
+    "choices":[
+        {
+            "choiceMax": 2,
+            "choice":[
+                "ChoiceButton1",
+                "ChoiceButton2"
+            ],
+            "choiceGoto":[3,4]
+        },
+        {
+            "choiceMax": 4,
+            "choice":[
+                "ChoiceButton1",
+                "ChoiceButton2",
+                "ChoiceButton3",
+                "ChoiceButton4"
+            ],
+            "choiceGoto":[7,8,9,10]
+        }
+    ]
+}
