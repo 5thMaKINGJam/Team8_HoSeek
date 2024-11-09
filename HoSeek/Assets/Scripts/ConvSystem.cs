@@ -38,10 +38,13 @@ public class ConvSystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI convText;
     [SerializeField] GameObject choiceWin;
     [SerializeField] Button[] buttons = new Button[4];
-    
+    [SerializeField] BreakObject breakObject;
+    [SerializeField] TimeAttack timeAttack;
+    public ChooseEnding chooseEnding;
     private ChoiceScript[] choiceScripts;
-    private Script[] scriptList;
+    private Dictionary<int,Script> scriptList = new Dictionary<int, Script>();
     private int currIdx;
+    private int choiceIdx;
     private Script currScript;
 
 
@@ -56,7 +59,11 @@ public class ConvSystem : MonoBehaviour
     }
     public void InitConv(){
         Scripts scripts = JsonUtility.FromJson<Scripts>(Resources.Load<TextAsset>("ScriptData").text);
-        scriptList = scripts.scripts;
+        for(int i = 0; i<scripts.scripts.Length; i++){
+            Script tmp = scripts.scripts[i];
+            scriptList.Add(scripts.scripts[i].id,tmp);
+            Debug.Log(scripts.scripts[i].id+" : "+scriptList[scripts.scripts[i].id].script);
+        }
         Choices choices = JsonUtility.FromJson<Choices>(Resources.Load<TextAsset>("ChoiceData").text);
         choiceScripts = choices.choices;
     }
@@ -72,8 +79,26 @@ public class ConvSystem : MonoBehaviour
         SetConv(currIdx);
     }
 
-    public void ChoiceButton(int choiceIdx){
-        currIdx = choiceScripts[currIdx].choiceGoto[choiceIdx];
+    public void ChoiceButton(int num){
+        if((currIdx==7001||currIdx==7004)&&num==0){
+            breakObject.gameObject.SetActive(true);
+            breakObject.BreakDrawer();
+        }
+        else if(currIdx == 5002){
+            if(num == 0){
+                currIdx = PlayerDataManager.pdata.isInt()?5004:5005;
+                Debug.Log("Int: "+PlayerDataManager.pdata.isInt());
+                if(PlayerDataManager.pdata.isHardMode){
+                    timeAttack.Penalty();
+                }
+                SetConv(currIdx);
+                return;
+            }
+        }
+        else if((currIdx==8001 || currIdx==8002)&&num==0){
+            chooseEnding.SwapItem();
+        }
+        currIdx = choiceScripts[choiceIdx].choiceGoto[num];
         SetConv(currIdx);   
     }
     
@@ -94,10 +119,13 @@ public class ConvSystem : MonoBehaviour
                 break;
             case "CHOICE":
                 Debug.Log(":: SetChoice() Call");
-                SetChoice();
+                SetChoice(currScript.choiceId);
                 break;
             case "ILLUST_FULL":
                 SetFullIllust();
+                break;
+            case "LITERATE":
+                SetLiterate();
                 break;
             case "END_CONV":
                 EndConv();
@@ -108,18 +136,27 @@ public class ConvSystem : MonoBehaviour
         }
     }
 
+    void SetLiterate(){
+        if(!PlayerDataManager.pdata.isInt()){
+            SetConv(2);
+            return;
+        }
+        SetNarr();
+    }
+
     void SetNarr(){
         Debug.Log(currScript.script);
         TextEffectStart(currScript.script);
     }
 
-    void SetChoice(){
+    void SetChoice(int idx){
+        choiceIdx = idx;
         choiceWin.SetActive(true);
-        for(int i =0; i<choiceScripts[currIdx].choiceMax; i++){
+        for(int i =0; i<choiceScripts[idx].choiceMax; i++){
             buttons[i].gameObject.SetActive(true);
-            buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceScripts[currIdx].choice[i];
+            buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceScripts[idx].choice[i];
         }
-        for(int j = choiceScripts[currIdx].choiceMax; j < 4; j++){
+        for(int j = choiceScripts[idx].choiceMax; j < 4; j++){
             buttons[j].gameObject.SetActive(false);
         }
         SetNarr();
@@ -148,15 +185,8 @@ public class ConvSystem : MonoBehaviour
             TextEffectEnd();
             return;
         }
-        while(effect_cnt<completeDialogue.Length){
-            convText.text += completeDialogue[effect_cnt];
-            if(completeDialogue[effect_cnt]==' ' || completeDialogue[effect_cnt]=='\n'){
-                effect_cnt++;
-                break;
-            }
-            effect_cnt++;
-        }
-        Debug.Log("End Effecting");
+        convText.text += completeDialogue[effect_cnt];
+        effect_cnt++;
         Invoke("TextEffecting",1/Const.TEXT_EFF_SPEED);
     }
     void TextEffectEnd(){

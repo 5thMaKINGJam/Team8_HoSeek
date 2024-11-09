@@ -23,7 +23,6 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
     public static Inventory imanager;
     [SerializeField] Image invenSlot;
     [SerializeField] Image itemImg;
-    [SerializeField] TextMeshProUGUI itemString;
     public Sprite emptySprite;
     public Sprite filledSprite;
     public Sprite SelectedSprite;
@@ -55,14 +54,19 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
         invenSlot.sprite = filledSprite;
         itemImg.gameObject.SetActive(true);
         itemImg.sprite = Resources.Load<Sprite>(Const.ITEMSP_PATH_BASE+itemId.ToString());
-        itemString.text = items[itemId].name;
     }
     public void OnPointerClick(PointerEventData eventData){
-        if(isSelected||isEmpty){
+        if(isEmpty){
             return;
         }
-        isSelected = true;
-        invenSlot.sprite = SelectedSprite;
+        if(isSelected){
+            isSelected = false;
+            invenSlot.sprite = filledSprite;
+        }
+        else{
+            isSelected = true;
+            invenSlot.sprite = SelectedSprite;
+        }
     }
 
     public void UseItem(){
@@ -71,13 +75,12 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
         }
         ClearSlot();
     }
-    void ClearSlot(){
+    public void ClearSlot(){
         isSelected = false;
         isEmpty = true;
         itemId = -1;
         invenSlot.sprite = emptySprite;
         itemImg.gameObject.SetActive(false);
-        itemString.text = "";
     }
 
     public bool IsEmpty(){

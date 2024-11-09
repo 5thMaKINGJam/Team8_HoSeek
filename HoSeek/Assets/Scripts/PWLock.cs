@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PWLock : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI[] pwText = new TextMeshProUGUI[3];
+    [SerializeField] ObjFunc target;
+    [SerializeField] GameObject activateObj;
 
     const string pwAnswer = "724";
     string currAnswer = "";
@@ -24,17 +25,7 @@ public class PWLock : MonoBehaviour
         pwInt[idx]++;
         pwInt[idx]%=10;
         pwText[idx].text = pwInt[idx].ToString();
-        currAnswer = "";
-        for(int i = 0; i<pwInt.Length; i++){
-            currAnswer+=pwInt[i].ToString();
-        }
-        if(currAnswer==pwAnswer){
-            Debug.Log("Answer Correct: "+pwAnswer.ToString());
-        }
-        else{
-            Debug.Log("PW Wrong: "+currAnswer.ToString());
-        }
-        
+        CheckAnswer();
     }
 
     public void ButtonDOWN(int idx){
@@ -44,12 +35,19 @@ public class PWLock : MonoBehaviour
         }
         pwInt[idx]%=10;
         pwText[idx].text = pwInt[idx].ToString();
+        CheckAnswer();
+    }
+
+    void CheckAnswer(){
         currAnswer = "";
         for(int i = 0; i<pwInt.Length; i++){
             currAnswer+=pwInt[i].ToString();
         }
         if(currAnswer==pwAnswer){
-            Debug.Log("Answer Correct: "+pwAnswer.ToString());
+            Debug.Log("Correct Answer: "+currAnswer.ToString());
+            target.unabled = false;
+            target.MainObj = activateObj;
+            gameObject.SetActive(false);
         }
         else{
             Debug.Log("PW Wrong: "+currAnswer.ToString());
