@@ -1,0 +1,20 @@
+{
+    "scripts":[
+        {
+            "id":0,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"This is the temporary string.",
+            "nextGoto":-1
+        },
+        {
+            "id":1,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"END_CONV",
+            "script":"",
+            "nextGoto":-1
+        }
+    ]
+}

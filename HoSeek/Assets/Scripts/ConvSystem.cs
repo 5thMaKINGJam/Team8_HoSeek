@@ -4,6 +4,33 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+class Script{
+    public int id;
+    public int illustNum;
+    public int choiceId;
+    public string scriptType;
+    public string script;
+    public int nextGoto;
+}
+
+[System.Serializable]
+class Scripts{
+    public Script[] scripts;
+}
+
+[System.Serializable]
+class Choices{
+    public ChoiceScript[] choices;
+}
+
+[System.Serializable]
+class ChoiceScript{
+    public int choiceMax;
+    public string[] choice = new string[4];
+    public int[] choiceGoto = new int[4];
+}
+
 public class ConvSystem : MonoBehaviour
 {
     [SerializeField] GameObject convWin;
@@ -12,84 +39,87 @@ public class ConvSystem : MonoBehaviour
     [SerializeField] GameObject choiceWin;
     [SerializeField] Button[] buttons = new Button[4];
     
-
-    private int storyMax = 0;
-    private StoryObject storyObject;
-    private Dictionary<int,ChoiceScript> choiceScripts = new Dictionary<int, ChoiceScript>();
+    private ChoiceScript[] choiceScripts;
+    private Script[] scriptList;
     private int currIdx;
-    private SingleScript currScript;
+    private Script currScript;
+
 
     // Text Effect 관련 변수
     private bool is_texteff = false;
     private int effect_cnt;
     private string completeDialogue;
 
+    private void Start(){
+        InitConv();
+        gameObject.SetActive(false);
+    }
+    public void InitConv(){
+        Scripts scripts = JsonUtility.FromJson<Scripts>(Resources.Load<TextAsset>("ScriptData").text);
+        scriptList = scripts.scripts;
+        Choices choices = JsonUtility.FromJson<Choices>(Resources.Load<TextAsset>("ChoiceData").text);
+        choiceScripts = choices.choices;
+    }
 
     public void NextButton(){
-        if(currScript.GetScriptType() != ScriptType.CHOICE && currScript.GetNextGoto() >= 0){
-            currIdx = currScript.GetNextGoto();
+        if(currScript.scriptType != "CHOICE" && currScript.nextGoto >= 0){
+            currIdx = currScript.nextGoto;
         }
         else{
             currIdx++;
         }
-        if(currIdx<storyObject.GetScriptLen()){
-            SetConv(currIdx);
-        }
-        else{
-            Debug.Log("EOF: Json end");
-        }
-        
+        Debug.Log("Next Script IDX: "+currIdx);
+        SetConv(currIdx);
     }
 
-    public void ChoiceButton(int choiceIdx){    // 외부에서 call 할 때도 이 함수 사용
-        currIdx = choiceScripts[currIdx].GetChoiceGoto(choiceIdx);
+    public void ChoiceButton(int choiceIdx){
+        currIdx = choiceScripts[currIdx].choiceGoto[choiceIdx];
         SetConv(currIdx);   
     }
     
-    void SetConv(int n){
+    public void SetConv(int n){
+        currIdx = n;
         convWin.SetActive(true);
 
         choiceWin.SetActive(false);
         illustObj.gameObject.SetActive(false);
         convText.gameObject.SetActive(true);
 
-        ScriptType prevType = (currScript==null)?ScriptType.NARR:currScript.GetScriptType();
-
-        currScript = storyObject.GetScript(n);
+        currScript = scriptList[n];
         
-            switch(currScript.GetScriptType()){
-                case ScriptType.NARR:
-                    Debug.Log(":: SetNarr() Call");
-                    SetNarr();
-                    break;
-                case ScriptType.CHOICE:
-                    Debug.Log(":: SetChoice() Call");
-                    SetChoice();
-                    break;
-                case ScriptType.ILLUST_FULL:
-                    SetFullIllust();
-                    break;
-                case ScriptType.END_CONV:
-                    EndConv();
-                    break;
-                default:
-                    Debug.Log("TYPE ERROR: "+n+"th script");
-                    break;
-            }
+        switch(currScript.scriptType){
+            case "NARR":
+                Debug.Log(":: SetNarr() Call");
+                SetNarr();
+                break;
+            case "CHOICE":
+                Debug.Log(":: SetChoice() Call");
+                SetChoice();
+                break;
+            case "ILLUST_FULL":
+                SetFullIllust();
+                break;
+            case "END_CONV":
+                EndConv();
+                break;
+            default:
+                Debug.Log("TYPE ERROR: "+n+"th script");
+                break;
+        }
     }
 
     void SetNarr(){
-        Debug.Log(currScript.GetContent());
-        TextEffectStart(currScript.GetContent());
+        Debug.Log(currScript.script);
+        TextEffectStart(currScript.script);
     }
 
     void SetChoice(){
         choiceWin.SetActive(true);
-        for(int i =0; i<choiceScripts[currIdx].GetChoiceMax(); i++){
+        for(int i =0; i<choiceScripts[currIdx].choiceMax; i++){
             buttons[i].gameObject.SetActive(true);
-            buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceScripts[currIdx].GetChoice(i);
+            buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceScripts[currIdx].choice[i];
         }
-        for(int j = choiceScripts[currIdx].GetChoiceMax(); j < 4; j++){
+        for(int j = choiceScripts[currIdx].choiceMax; j < 4; j++){
             buttons[j].gameObject.SetActive(false);
         }
         SetNarr();
@@ -111,7 +141,7 @@ public class ConvSystem : MonoBehaviour
         convText.text = "";
         effect_cnt=0;
         is_texteff = true;
-        //Invoke("TextEffecting",1/Const.TEXT_EFF_SPEED);
+        Invoke("TextEffecting",1/Const.TEXT_EFF_SPEED);
     }
     void TextEffecting(){
         if(convText.text==completeDialogue){
@@ -140,7 +170,7 @@ public class ConvSystem : MonoBehaviour
                 TextEffectEnd();
             }
 
-            else if(currScript.GetScriptType()!=ScriptType.CHOICE) {
+            else if(currScript.scriptType!="CHOICE") {
                 NextButton();
             }
         }

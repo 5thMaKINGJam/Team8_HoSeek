@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
-using Unity.VisualScripting;
 
 [System.Serializable]
 class Items{
@@ -21,6 +20,7 @@ class Item{
 
 public class Inventory : MonoBehaviour,IPointerClickHandler
 {
+    public static Inventory imanager;
     [SerializeField] Image invenSlot;
     [SerializeField] Image itemImg;
     [SerializeField] TextMeshProUGUI itemString;
@@ -34,6 +34,9 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
 
     Item[] items;
 
+    void Awake(){
+        imanager = this;
+    }
     void Start(){
         InitItemList();
     }
@@ -73,6 +76,9 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
         itemString.text = "";
     }
 
+    public bool IsEmpty(){
+        return isEmpty;
+    }
     public int getId(){
         return itemId;
     }
