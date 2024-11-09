@@ -27,9 +27,9 @@ public class Stats : MonoBehaviour
 
     void Start()
     {
-        Str = PlayerDataManager.Instance.str_stat;
-        Int = PlayerDataManager.Instance.int_stat;
-        Wis = PlayerDataManager.Instance.wis_stat;
+        Str = PlayerDataManager.pdata.str_stat;
+        Int = PlayerDataManager.pdata.int_stat;
+        Wis = PlayerDataManager.pdata.wis_stat;
 
         StrUpButton.onClick.AddListener(StrUp);
         StrDownButton.onClick.AddListener(StrDown);
@@ -44,10 +44,10 @@ public class Stats : MonoBehaviour
 
     void UpdateUI()
     {
-        StrText.text = "±Ù·Â: " + Str;
-        IntText.text = "Áö´É: " + Int;
-        WisText.text = "ÁöÇý: " + Wis;
-        SumText.text = "ÇÕ°è " + StatsSum + " Á¡";
+        StrText.text = "ï¿½Ù·ï¿½: " + Str;
+        IntText.text = "ï¿½ï¿½ï¿½ï¿½: " + Int;
+        WisText.text = "ï¿½ï¿½ï¿½ï¿½: " + Wis;
+        SumText.text = "ï¿½Õ°ï¿½ " + StatsSum + " ï¿½ï¿½";
 
         StrUpButton.interactable = StatsSum > 0;
         IntUpButton.interactable = StatsSum > 0;
@@ -126,7 +126,7 @@ public class Stats : MonoBehaviour
 
     void SaveStats()
     {
-        PlayerDataManager.Instance.SetStat(Int, Str, Wis);
+        PlayerDataManager.pdata.SetStat(Int, Str, Wis);
     }
 
     void OnStartButton()

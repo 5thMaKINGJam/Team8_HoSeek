@@ -5,29 +5,46 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDataManager : MonoBehaviour
 {
-    public static PlayerDataManager Instance;
+
+    public static PlayerDataManager pdata;
+
+    void Awake(){
+        if(pdata == null){
+            pdata = this;
+            DontDestroyOnLoad(pdata);
+        }
+        else if(pdata!=this){
+            Destroy(this);
+            return;
+        }
+    }
 
     public int int_stat { get; private set; } = 0;
     public int str_stat { get; private set; } = 0;
     public int wis_stat { get; private set; } = 0;
 
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+    public void SetStat(int Int,int Str,int Wis){
+        int_stat = Int;
+        str_stat = Str;
+        str_stat = Wis;
     }
 
-    public void SetStat(int intel, int str, int wisdom)
-    {
-        int_stat = intel;
-        str_stat = str;
-        wis_stat = wisdom;
+    public bool isInt(){
+        if(int_stat>=5){
+            return true;
+        }
+        return false;
+    }
+    public bool isStr(){
+        if(str_stat>=5){
+            return true;
+        }
+        return false;
+    }
+    public bool isWis(){
+        if(wis_stat>=5){
+            return true;
+        }
+        return false;
     }
 }
