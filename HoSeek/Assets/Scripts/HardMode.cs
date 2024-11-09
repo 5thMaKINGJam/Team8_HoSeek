@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+public class HardMode : MonoBehaviour,IPointerClickHandler
+{
+    [SerializeField] Image[] imagePannel = new Image[2];
+    public TimeAttack timeAttack;
+
+    int cnt = 0;
+
+    void Start(){
+        timeAttack.gameObject.SetActive(false);
+    }
+    public void ShowIllust(){
+        imagePannel[cnt].gameObject.SetActive(true);
+        if(cnt == 0){
+            cnt++;
+        }
+        else{
+            Invoke("IllustOff",3f);
+        }
+    }
+    void IllustOff(){
+        imagePannel[cnt].gameObject.SetActive(false);
+        timeAttack.gameObject.SetActive(true);
+        timeAttack.SetTime();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        ShowIllust();
+    }
+}

@@ -8,6 +8,9 @@ public class ArrowLock : MonoBehaviour
 {
     [SerializeField] Button[] arrowButton = new Button[4];
     // 0:up, 1:down, 2:left, 3:right
+    [SerializeField] ConvSystem convSystem;
+
+    [SerializeField] ObjFunc target;
 
     const string pwAnswer = "3021";
     string currAnswer = "";
@@ -29,7 +32,17 @@ public class ArrowLock : MonoBehaviour
             currAnswer+=pwInt[i].ToString();
         }
         if(currAnswer==pwAnswer){
-            Debug.Log("Answer Correct: "+pwAnswer.ToString());
+            convSystem.gameObject.SetActive(true);
+            if(!Inventory.imanager.IsEmpty()){
+                convSystem.SetConv(3);
+                gameObject.SetActive(false);
+                return;
+            }
+            convSystem.SetConv(2004);
+            Inventory.imanager.SetItem(0);
+            target.unabled = false;
+            gameObject.SetActive(false);
+
         }
         else{
             Debug.Log("PW Wrong: "+currAnswer.ToString());
