@@ -44,10 +44,10 @@ public class Stats : MonoBehaviour
 
     void UpdateUI()
     {
-        StrText.text = "�ٷ�: " + Str;
-        IntText.text = "����: " + Int;
-        WisText.text = "����: " + Wis;
-        SumText.text = "�հ� " + StatsSum + " ��";
+        StrText.text = "근력: " + Str;
+        IntText.text = "지력: " + Int;
+        WisText.text = "지혜: " + Wis;
+        SumText.text = "합계 " + StatsSum + " 점";
 
         StrUpButton.interactable = StatsSum > 0;
         IntUpButton.interactable = StatsSum > 0;
@@ -132,6 +132,8 @@ public class Stats : MonoBehaviour
     void OnStartButton()
     {
         SaveStats();
-        SceneManager.LoadScene("Sample");
+        SceneManager.LoadScene("IntroScene");
     }
+
+    
 }
