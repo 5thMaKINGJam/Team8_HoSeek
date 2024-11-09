@@ -3,8 +3,8 @@
         {
             "id":0,
             "name":"tempitem1",
-            "type":"use",
-            "etc":"0"
+            "type":"ADDWITH_MAP",
+            "etc":"3"
         },
         {
             "id":1,

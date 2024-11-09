@@ -39,9 +39,10 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
     }
     void Start(){
         InitItemList();
+        ClearSlot();
     }
     void InitItemList(){
-        Items itemList = JsonUtility.FromJson<Items>(Resources.Load<TextAsset>(Const.ITEM_DATA_BASE+"ItemList.json").text);
+        Items itemList = JsonUtility.FromJson<Items>(Resources.Load<TextAsset>("ItemList").text);
         items = itemList.ItemList;
     }
 
@@ -68,6 +69,9 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
         if(!isSelected||isEmpty){
             return;
         }
+        ClearSlot();
+    }
+    void ClearSlot(){
         isSelected = false;
         isEmpty = true;
         itemId = -1;
@@ -87,5 +91,8 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
     }
     public string getEtc(){
         return items[itemId].etc;
+    }
+    public bool GetisSelected(){
+        return isSelected;
     }
 }

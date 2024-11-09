@@ -50,6 +50,10 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
         int target = int.Parse(etc.Split('_')[0]);
         int result = int.Parse(etc.Split('_')[1]);
 
+        if(Inventory.imanager.IsEmpty()||!Inventory.imanager.GetisSelected()){
+            return;
+        }
+
         int invenItem = Inventory.imanager.getId();
 
         if(invenItem<0 || Inventory.imanager.getItemType() != "ADDWITH_MAP"){
@@ -67,6 +71,10 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
         string[] thisEtc = etc.Split('_');
         int target = int.Parse(thisEtc[0]);
         string action = thisEtc[1];
+
+        if(Inventory.imanager.IsEmpty()||!Inventory.imanager.GetisSelected()){
+            return;
+        }
 
         int invenItem = Inventory.imanager.getId();
         if(invenItem<0 || Inventory.imanager.getItemType() != "ADDWITH_MAP"){
