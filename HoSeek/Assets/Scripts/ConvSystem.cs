@@ -86,9 +86,12 @@ public class ConvSystem : MonoBehaviour
         }
         else if(currIdx == 5002){
             if(num == 0){
+                
                 currIdx = PlayerDataManager.pdata.isInt()?5004:5005;
                 Debug.Log("Int: "+PlayerDataManager.pdata.isInt());
-                if(PlayerDataManager.pdata.isHardMode){
+                PlayerDataManager.pdata.isHurt = true;
+                if (PlayerDataManager.pdata.isHardMode){
+
                     timeAttack.Penalty();
                 }
                 SetConv(currIdx);
