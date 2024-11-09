@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
 enum EndingType{
     HAPPY,
     NORMAL,
@@ -47,8 +50,24 @@ public class ToEnding : MonoBehaviour, IPointerClickHandler
         ToEndScene();
     }
 
-    void ToEndScene(){
-        // 엔딩씬 연결 필요
-        Debug.Log("Ending.");
+    void ToEndScene()
+    {
+        if (endingType == EndingType.NORMAL && endingNum == 2)
+        {
+            SceneManager.LoadScene("Ending3_Normal2");
+        }
+        else if (endingType == EndingType.HAPPY && endingNum == 1)
+        {
+            SceneManager.LoadScene("Ending1_Happy");
+        }
+        else if (endingType == EndingType.NORMAL && endingNum == 1)
+        {
+            SceneManager.LoadScene("Ending2_Normal1");
+        }
+        else if (endingType == EndingType.BAD)
+        {
+            SceneManager.LoadScene("Ending4_Bad");
+        }
     }
+
 }

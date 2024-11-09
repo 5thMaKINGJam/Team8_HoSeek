@@ -27,10 +27,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Ending1_Happy.unity
     guid: abd97efa85573f84ca8a5804b5181aa8
   - enabled: 1
-    path: Assets/Scenes/Ending2_Normal.unity
+    path: Assets/Scenes/Ending2_Normal1.unity
     guid: 255247e53b2df584f8316d026aa054f1
   - enabled: 1
-    path: Assets/Scenes/Ending3_Normal 1.unity
+    path: Assets/Scenes/Ending3_Normal2.unity
     guid: 05edccf7d975b994c9fe3cd3efd705ec
   - enabled: 1
     path: Assets/Scenes/Ending4_Bad.unity
