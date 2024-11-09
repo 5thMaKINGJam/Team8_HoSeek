@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDataManager : MonoBehaviour
 {
 
     public static PlayerDataManager pdata;
-
-    int int_stat = 0;
-    int str_stat = 0;
-    int wis_stat = 0;
 
     void Awake(){
         if(pdata == null){
@@ -21,11 +18,11 @@ public class PlayerDataManager : MonoBehaviour
             return;
         }
     }
-    void SetStat(int intel, int str, int wisdom){
-        int_stat = intel;
-        str_stat = str;
-        wis_stat = wisdom;
-    }
+
+    public int int_stat { get; private set; } = 0;
+    public int str_stat { get; private set; } = 0;
+    public int wis_stat { get; private set; } = 0;
+
     public bool isInt(){
         if(int_stat>=5){
             return true;
