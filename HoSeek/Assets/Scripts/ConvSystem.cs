@@ -38,7 +38,9 @@ public class ConvSystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI convText;
     [SerializeField] GameObject choiceWin;
     [SerializeField] Button[] buttons = new Button[4];
-    
+    [SerializeField] BreakObject breakObject;
+    [SerializeField] TimeAttack timeAttack;
+    public ChooseEnding chooseEnding;
     private ChoiceScript[] choiceScripts;
     private Dictionary<int,Script> scriptList = new Dictionary<int, Script>();
     private int currIdx;
@@ -78,6 +80,24 @@ public class ConvSystem : MonoBehaviour
     }
 
     public void ChoiceButton(int num){
+        if((currIdx==7001||currIdx==7004)&&num==0){
+            breakObject.gameObject.SetActive(true);
+            breakObject.BreakDrawer();
+        }
+        else if(currIdx == 5002){
+            if(num == 0){
+                currIdx = PlayerDataManager.pdata.isInt()?5004:5005;
+                Debug.Log("Int: "+PlayerDataManager.pdata.isInt());
+                if(PlayerDataManager.pdata.isHardMode){
+                    timeAttack.Penalty();
+                }
+                SetConv(currIdx);
+                return;
+            }
+        }
+        else if((currIdx==8001 || currIdx==8002)&&num==0){
+            chooseEnding.SwapItem();
+        }
         currIdx = choiceScripts[choiceIdx].choiceGoto[num];
         SetConv(currIdx);   
     }
@@ -104,6 +124,9 @@ public class ConvSystem : MonoBehaviour
             case "ILLUST_FULL":
                 SetFullIllust();
                 break;
+            case "LITERATE":
+                SetLiterate();
+                break;
             case "END_CONV":
                 EndConv();
                 break;
@@ -111,6 +134,14 @@ public class ConvSystem : MonoBehaviour
                 Debug.Log("TYPE ERROR: "+n+"th script");
                 break;
         }
+    }
+
+    void SetLiterate(){
+        if(!PlayerDataManager.pdata.isInt()){
+            SetConv(2);
+            return;
+        }
+        SetNarr();
     }
 
     void SetNarr(){
@@ -156,7 +187,6 @@ public class ConvSystem : MonoBehaviour
         }
         convText.text += completeDialogue[effect_cnt];
         effect_cnt++;
-        Debug.Log("End Effecting");
         Invoke("TextEffecting",1/Const.TEXT_EFF_SPEED);
     }
     void TextEffectEnd(){

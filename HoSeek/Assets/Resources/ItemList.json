@@ -2,15 +2,27 @@
     "ItemList":[
         {
             "id":0,
-            "name":"열쇠",
+            "name":"은빛 열쇠",
             "type":"ADDWITH_MAP",
             "etc":"24"
         },
         {
             "id":1,
-            "name":"tempitem2",
-            "type":"use",
-            "etc":"2"
+            "name":"황동 열쇠",
+            "type":"ADDWITH_MAP",
+            "etc":"22"
+        },
+        {
+            "id":2,
+            "name":"판자",
+            "type":"ADDWITH_MAP",
+            "etc":"22"
+        },
+        {
+            "id":3,
+            "name":"이상한 보석",
+            "type":"ADDWITH_MAP",
+            "etc":"22"
         }
     ]
 }

@@ -29,7 +29,7 @@
             "illustNum":-1,
             "choiceId":-1,
             "scriptType":"NARR",
-            "script":"더 이상은 물건을 챙길 수 없다.",
+            "script":"더 이상 물건을 챙길 수 없다.",
             "nextGoto":0
         },
         {
@@ -93,14 +93,14 @@
             "illustNum":-1,
             "choiceId":-1,
             "scriptType":"NARR",
-            "script":"일지를 얻었다.",
+            "script":"일지가 있다.",
             "nextGoto":3002
         },
         {
             "id":3002,
             "illustNum":-1,
             "choiceId":-1,
-            "scriptType":"NARR",
+            "scriptType":"LITERATE",
             "script":"11월 2일.",
             "nextGoto":3003
         },
@@ -125,7 +125,7 @@
             "illustNum":-1,
             "choiceId":-1,
             "scriptType":"NARR",
-            "script":"쪽지를 얻었다.",
+            "script":"쪽지가 있다.",
             "nextGoto":4002
         },
         {
@@ -139,16 +139,16 @@
         {
             "id":5001,
             "illustNum":-1,
-            "choiceId":-1,
-            "scriptType":"NARR",
+            "choiceId":1,
+            "scriptType":"CHOICE",
             "script":"포근해보인다.",
             "nextGoto":0
         },
         {
             "id":5002,
             "illustNum":-1,
-            "choiceId":-1,
-            "scriptType":"NARR",
+            "choiceId":2,
+            "scriptType":"CHOICE",
             "script":"따뜻하다.",
             "nextGoto":5003
         },
@@ -189,14 +189,14 @@
             "illustNum":-1,
             "choiceId":-1,
             "scriptType":"NARR",
-            "script":"일지를 얻었다.",
+            "script":"일지가 있다.",
             "nextGoto":6003
         },
         {
             "id":6003,
             "illustNum":-1,
             "choiceId":-1,
-            "scriptType":"NARR",
+            "scriptType":"LITERATE",
             "script":"11월 10일.",
             "nextGoto":6004
         },
@@ -238,6 +238,70 @@
             "choiceId":-1,
             "scriptType":"NARR",
             "script":"판자를 얻었다.",
+            "nextGoto":0
+        },
+        {
+            "id":7001,
+            "illustNum":-1,
+            "choiceId":3,
+            "scriptType":"CHOICE",
+            "script":"부술 수 있을 것 같다. 부술까?",
+            "nextGoto":-1
+        },
+        {
+            "id":7002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"서랍을 부쉈다. 안에 무언가 있는 것 같다.",
+            "nextGoto":0
+        },
+        {
+            "id":7003,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"아마도 여기에 쓰이는 열쇠였던 것 같다...",
+            "nextGoto":0
+        },
+        {
+            "id":7004,
+            "illustNum":-1,
+            "choiceId":4,
+            "scriptType":"CHOICE",
+            "script":"부술 수 있을 것 같다. 부술까?",
+            "nextGoto":-1
+        },
+        {
+            "id":8001,
+            "illustNum":-1,
+            "choiceId":4,
+            "scriptType":"CHOICE",
+            "script":"현재 가진 것을 버리고 이걸 가져갈까?",
+            "nextGoto":-1
+        },
+        {
+            "id":8002,
+            "illustNum":-1,
+            "choiceId":5,
+            "scriptType":"CHOICE",
+            "script":"현재 가진 것을 원래 자리에 두고 이걸 가져갈까?",
+            "nextGoto":-1
+        },
+        {
+            "id":8003,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"물건을 챙겼다.",
+            "nextGoto":0
+        },
+        {
+            "id":9001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"이상한 보석을 얻었다.",
             "nextGoto":0
         },
         {

@@ -23,6 +23,30 @@
                 "손을 뺀다."
             ],
             "choiceGoto":[5003,0]
+        },
+        {
+            "choiceMax": 2,
+            "choice":[
+                "부순다.",
+                "부수지 않는다."
+            ],
+            "choiceGoto":[7002,0]
+        },
+        {
+            "choiceMax": 2,
+            "choice":[
+                "물건을 바꾼다.",
+                "그대로 둔다."
+            ],
+            "choiceGoto":[8003,0]
+        },
+        {
+            "choiceMax": 2,
+            "choice":[
+                "물건을 바꾼다.",
+                "그대로 둔다."
+            ],
+            "choiceGoto":[8003,0]
         }
     ]
 }
