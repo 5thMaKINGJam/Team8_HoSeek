@@ -7,7 +7,12 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
 {
     public int id;
     public string[] interType = {"Default"};
+    public string unableAction = "";
     public string etc = "";
+    public string unableEtc="";
+    
+    public string constraint="";
+    public string constraintEtc = "";
 
     public bool dontDeactivate = false;
 
@@ -16,6 +21,8 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
 
     int spriteIdx = 0;
     int maxIdx = 0;
+
+    private bool unabled = false;
 
     void Start(){
         if(interType[0]=="ChangeForm"){
@@ -28,6 +35,7 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
     }
 
     public void OnPointerClick(PointerEventData eventData){
+        unabled = false;
         for(int i = 0; i<interType.Length; i++){
             Debug.Log(interType[i]);
             Invoke(interType[i],0f);
@@ -51,12 +59,14 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
         int result = int.Parse(etc.Split('_')[1]);
 
         if(Inventory.imanager.IsEmpty()||!Inventory.imanager.GetisSelected()){
+            Unabled();
             return;
         }
 
         int invenItem = Inventory.imanager.getId();
 
         if(invenItem<0 || Inventory.imanager.getItemType() != "ADDWITH_MAP"){
+            Unabled();
             return;
         }
         string[] invenEtc = Inventory.imanager.getEtc().Split('_');
@@ -68,16 +78,19 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
     }
 
     void ActionWithItem(){
+        // etc 형식 타겟아이템_action
         string[] thisEtc = etc.Split('_');
         int target = int.Parse(thisEtc[0]);
         string action = thisEtc[1];
 
         if(Inventory.imanager.IsEmpty()||!Inventory.imanager.GetisSelected()){
+            Unabled();
             return;
         }
 
         int invenItem = Inventory.imanager.getId();
         if(invenItem<0 || Inventory.imanager.getItemType() != "ADDWITH_MAP"){
+            Unabled();
             return;
         }
         string[] invenEtc = Inventory.imanager.getEtc().Split('_');
@@ -115,6 +128,25 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
     void SetConv(){
         // etc 형식: initScriptID_defaultScriptID_isDefault
         string[] thisEtc = etc.Split('_');
+        if(unabled){
+            thisEtc = unableEtc.Split('_');
+        }
+        else if(constraint!=""){
+            switch(constraint){
+                case "str":
+                    if(PlayerDataManager.pdata.isStr()){
+                        thisEtc = constraintEtc.Split();
+                    }
+                    break;
+                case "int":
+                    if(PlayerDataManager.pdata.isInt()){
+                        thisEtc = constraintEtc.Split();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
         int scrptId = 0;
         if(thisEtc[2]=="1"){
             scrptId = int.Parse(thisEtc[1]);
@@ -125,5 +157,10 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
         }
         StoryObj.gameObject.SetActive(true);
         StoryObj.SetConv(scrptId);
+    }
+
+    void Unabled(){
+        unabled = true;
+        Invoke(unableAction,0f);
     }
 }
