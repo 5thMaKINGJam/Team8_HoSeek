@@ -27,12 +27,10 @@ public class Stats : MonoBehaviour
 
     void Start()
     {
-        // PlayerDataManager에서 스탯 불러오기
         Str = PlayerDataManager.Instance.str_stat;
         Int = PlayerDataManager.Instance.int_stat;
         Wis = PlayerDataManager.Instance.wis_stat;
 
-        // 버튼 이벤트 리스너 추가
         StrUpButton.onClick.AddListener(StrUp);
         StrDownButton.onClick.AddListener(StrDown);
         IntUpButton.onClick.AddListener(IntUp);
