@@ -4,17 +4,313 @@
             "id":0,
             "illustNum":-1,
             "choiceId":-1,
-            "scriptType":"NARR",
-            "script":"This is the temporary string.",
+            "scriptType":"END_CONV",
+            "script":"",
             "nextGoto":-1
         },
         {
             "id":1,
             "illustNum":-1,
             "choiceId":-1,
-            "scriptType":"END_CONV",
-            "script":"",
+            "scriptType":"NARR",
+            "script":"열리지 않는다.",
+            "nextGoto":0
+        },
+        {
+            "id":2,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"흰 건 종이고 검은 건 무늬인가?",
+            "nextGoto":0
+        },
+        {
+            "id":3,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"더 이상은 물건을 챙길 수 없다.",
+            "nextGoto":0
+        },
+        {
+            "id":4,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"딱히 새로운 것은 없다.",
+            "nextGoto":0
+        },
+        {
+            "id":1001,
+            "illustNum":-1,
+            "choiceId":0,
+            "scriptType":"CHOICE",
+            "script":"한 종류의 고기만이 상에 올라와있다.",
             "nextGoto":-1
+        },
+        {
+            "id":1002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"먹어본 적 없는 맛이 난다. 먹기 힘들 정도로 역겹고 질기다.",
+            "nextGoto":0
+        },
+        {
+            "id":2001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"언제 봐도 잘생긴 모습이다.",
+            "nextGoto":-1
+        },
+        {
+            "id":2002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"... ...",
+            "nextGoto":-1
+        },
+        {
+            "id":2003,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"뒤에 무언가가 쓰여있는 것 같다.",
+            "nextGoto":0
+        },
+        {
+            "id":2004,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"열쇠를 얻었다.",
+            "nextGoto":0
+        },
+        {
+            "id":3001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"일지를 얻었다.",
+            "nextGoto":3002
+        },
+        {
+            "id":3002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"11월 2일.",
+            "nextGoto":3003
+        },
+        {
+            "id":3003,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"며칠만 더 버티면 이 곳을 벗어날 수 있다. 같은 음식만 먹은지 얼마나 오래됐는지 기억도 안 난다.",
+            "nextGoto":3004
+        },
+        {
+            "id":3004,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"꼭 OOOO 되고 말 것이다.",
+            "nextGoto":0
+        },
+        {
+            "id":4001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"쪽지를 얻었다.",
+            "nextGoto":4002
+        },
+        {
+            "id":4002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"|||||||  ||  ||||",
+            "nextGoto":0
+        },
+        {
+            "id":5001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"포근해보인다.",
+            "nextGoto":0
+        },
+        {
+            "id":5002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"따뜻하다.",
+            "nextGoto":5003
+        },
+        {
+            "id":5003,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"손에 뭔가 걸린다",
+            "nextGoto":-1
+        },
+        {
+            "id":5004,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"젠장! 누가 이불 속에 칼을 넣어놓는 거야??",
+            "nextGoto":0
+        },
+        {
+            "id":5005,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"젠장! 누가 이런 곳에 날카로운 걸 넣어놓은 거야??",
+            "nextGoto":0
+        },
+        {
+            "id":6001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"열쇠와 판자가 있다.",
+            "nextGoto":-1
+        },
+        {
+            "id":6002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"일지를 얻었다.",
+            "nextGoto":6003
+        },
+        {
+            "id":6003,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"11월 10일.",
+            "nextGoto":6004
+        },
+        {
+            "id":6004,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"빌어먹을! 날이 추워져서 그런지 더 이상 산에 호랑이가 보이지 않는다.",
+            "nextGoto":6005
+        },
+        {
+            "id":6005,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"하루만 더 버티면 OOOO 될 수 있는데 고기가 없다니!",
+            "nextGoto":6006
+        },
+        {
+            "id":6006,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"99일 동안 먹은 호랑이 고기를 이토록 애타게 찾게 될 줄은 몰랐다.",
+            "nextGoto":0
+        },
+        {
+            "id":6007,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"열쇠를 얻었다.",
+            "nextGoto":0
+        },
+        {
+            "id":6008,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"판자를 얻었다.",
+            "nextGoto":0
+        },
+        {
+            "id":10001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"낮선 장소에서 눈을 떴다.\n산 속에서 떠난 적이 없는데 무슨 일이지?",
+            "nextGoto":0
+        },
+        {
+            "id":11001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"문 위 천장 틈 사이로 올라간다.",
+            "nextGoto":11002
+        },
+        {
+            "id":11002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"허름한 지붕에 올라가 아래를 보니 사람이 도축용 칼을 들고 문을 열려고 한다.",
+            "nextGoto":0
+        },
+        {
+            "id":12001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"무사히 집을 나와 산 속으로 도망쳤다.",
+            "nextGoto":12002
+        },
+        {
+            "id":12002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"다시는 같은 실수를 하지 않으리라.",
+            "nextGoto":0
+        },
+        {
+            "id":13001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"인간은 기다란 칼을 가지고 있었고 나는 다쳤다.",
+            "nextGoto":13002
+        },
+        {
+            "id":13002,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"복수를 다짐하며 반대쪽으로 뛰어내려 산 속으로 도망쳤다.",
+            "nextGoto":13003
+        },
+        {
+            "id":13003,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"다시는 같은 실수를 하지 않으리라.",
+            "nextGoto":0
+        },
+        {
+            "id":14001,
+            "illustNum":-1,
+            "choiceId":-1,
+            "scriptType":"NARR",
+            "script":"살아남지 못했다.",
+            "nextGoto":0
         }
     ]
 }

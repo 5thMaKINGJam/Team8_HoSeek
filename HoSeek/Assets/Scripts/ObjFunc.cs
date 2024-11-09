@@ -22,7 +22,7 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
     int spriteIdx = 0;
     int maxIdx = 0;
 
-    private bool unabled = false;
+    public bool unabled = false;
 
     void Start(){
         if(interType[0]=="ChangeForm"){
@@ -35,7 +35,10 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
     }
 
     public void OnPointerClick(PointerEventData eventData){
-        unabled = false;
+        if(unabled){
+            Invoke(unableAction,0f);
+            return;
+        }
         for(int i = 0; i<interType.Length; i++){
             Debug.Log(interType[i]);
             Invoke(interType[i],0f);
@@ -122,7 +125,7 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
     }
 
     void ActivateObj(){
-        MainObj.transform.GetChild(int.Parse(etc)).gameObject.SetActive(true);
+        MainObj.gameObject.SetActive(true);
     }
 
     void SetConv(){

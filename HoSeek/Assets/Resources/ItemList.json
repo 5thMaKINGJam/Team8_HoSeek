@@ -2,9 +2,9 @@
     "ItemList":[
         {
             "id":0,
-            "name":"tempitem1",
+            "name":"열쇠",
             "type":"ADDWITH_MAP",
-            "etc":"3"
+            "etc":"24"
         },
         {
             "id":1,

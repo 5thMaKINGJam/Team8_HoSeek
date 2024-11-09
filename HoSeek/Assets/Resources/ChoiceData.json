@@ -3,20 +3,26 @@
         {
             "choiceMax": 2,
             "choice":[
-                "ChoiceButton1",
-                "ChoiceButton2"
+                "고기를 먹어본다.",
+                "먹지 않는다."
             ],
-            "choiceGoto":[3,4]
+            "choiceGoto":[1002,0]
         },
         {
-            "choiceMax": 4,
+            "choiceMax": 2,
             "choice":[
-                "ChoiceButton1",
-                "ChoiceButton2",
-                "ChoiceButton3",
-                "ChoiceButton4"
+                "이불 속으로 손을 넣는다.",
+                "떠난다."
             ],
-            "choiceGoto":[7,8,9,10]
+            "choiceGoto":[5002,0]
+        },
+        {
+            "choiceMax": 2,
+            "choice":[
+                "손을 더 안쪽으로 뻗는다.",
+                "손을 뺀다."
+            ],
+            "choiceGoto":[5003,0]
         }
     ]
 }

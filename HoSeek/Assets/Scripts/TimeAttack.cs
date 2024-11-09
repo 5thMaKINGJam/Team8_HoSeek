@@ -14,7 +14,6 @@ public class TimeAttack : MonoBehaviour
 
     void Start(){
         timerText.text = "";
-        SetTime();
     }
     public void SetTime(){
         if(setTime){
@@ -26,6 +25,9 @@ public class TimeAttack : MonoBehaviour
     }
 
     void Update(){
+        if(!setTime){
+            return;
+        }
         if(currTime>0){
             currTime -= Time.deltaTime;
             SetTimeText(currTime);

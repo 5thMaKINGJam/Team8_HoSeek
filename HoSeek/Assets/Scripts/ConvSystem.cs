@@ -40,8 +40,9 @@ public class ConvSystem : MonoBehaviour
     [SerializeField] Button[] buttons = new Button[4];
     
     private ChoiceScript[] choiceScripts;
-    private Script[] scriptList;
+    private Dictionary<int,Script> scriptList = new Dictionary<int, Script>();
     private int currIdx;
+    private int choiceIdx;
     private Script currScript;
 
 
@@ -56,7 +57,11 @@ public class ConvSystem : MonoBehaviour
     }
     public void InitConv(){
         Scripts scripts = JsonUtility.FromJson<Scripts>(Resources.Load<TextAsset>("ScriptData").text);
-        scriptList = scripts.scripts;
+        for(int i = 0; i<scripts.scripts.Length; i++){
+            Script tmp = scripts.scripts[i];
+            scriptList.Add(scripts.scripts[i].id,tmp);
+            Debug.Log(scripts.scripts[i].id+" : "+scriptList[scripts.scripts[i].id].script);
+        }
         Choices choices = JsonUtility.FromJson<Choices>(Resources.Load<TextAsset>("ChoiceData").text);
         choiceScripts = choices.choices;
     }
@@ -72,8 +77,8 @@ public class ConvSystem : MonoBehaviour
         SetConv(currIdx);
     }
 
-    public void ChoiceButton(int choiceIdx){
-        currIdx = choiceScripts[currIdx].choiceGoto[choiceIdx];
+    public void ChoiceButton(int num){
+        currIdx = choiceScripts[choiceIdx].choiceGoto[num];
         SetConv(currIdx);   
     }
     
@@ -94,7 +99,7 @@ public class ConvSystem : MonoBehaviour
                 break;
             case "CHOICE":
                 Debug.Log(":: SetChoice() Call");
-                SetChoice();
+                SetChoice(currScript.choiceId);
                 break;
             case "ILLUST_FULL":
                 SetFullIllust();
@@ -113,13 +118,14 @@ public class ConvSystem : MonoBehaviour
         TextEffectStart(currScript.script);
     }
 
-    void SetChoice(){
+    void SetChoice(int idx){
+        choiceIdx = idx;
         choiceWin.SetActive(true);
-        for(int i =0; i<choiceScripts[currIdx].choiceMax; i++){
+        for(int i =0; i<choiceScripts[idx].choiceMax; i++){
             buttons[i].gameObject.SetActive(true);
-            buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceScripts[currIdx].choice[i];
+            buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = choiceScripts[idx].choice[i];
         }
-        for(int j = choiceScripts[currIdx].choiceMax; j < 4; j++){
+        for(int j = choiceScripts[idx].choiceMax; j < 4; j++){
             buttons[j].gameObject.SetActive(false);
         }
         SetNarr();
@@ -148,14 +154,8 @@ public class ConvSystem : MonoBehaviour
             TextEffectEnd();
             return;
         }
-        while(effect_cnt<completeDialogue.Length){
-            convText.text += completeDialogue[effect_cnt];
-            if(completeDialogue[effect_cnt]==' ' || completeDialogue[effect_cnt]=='\n'){
-                effect_cnt++;
-                break;
-            }
-            effect_cnt++;
-        }
+        convText.text += completeDialogue[effect_cnt];
+        effect_cnt++;
         Debug.Log("End Effecting");
         Invoke("TextEffecting",1/Const.TEXT_EFF_SPEED);
     }
