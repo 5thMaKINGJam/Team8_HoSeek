@@ -23,6 +23,12 @@ public class PlayerDataManager : MonoBehaviour
     public int str_stat { get; private set; } = 0;
     public int wis_stat { get; private set; } = 0;
 
+    public void SetStat(int Int,int Str,int Wis){
+        int_stat = Int;
+        str_stat = Str;
+        str_stat = Wis;
+    }
+
     public bool isInt(){
         if(int_stat>=5){
             return true;
