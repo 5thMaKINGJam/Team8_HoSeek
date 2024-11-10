@@ -37,6 +37,21 @@ public class HardMode : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        HandleClick();
         ShowIllust();
+    }
+
+
+    void HandleClick()
+    {
+        if (cnt == 0)
+        {
+            SoundManager.instance.StopBGM();
+            SoundManager.instance.PlaySoundChop();
+        }
+        else if (cnt == 1)
+        {
+            SoundManager.instance.PlaySoundJumpScare();
+        }
     }
 }

@@ -22,7 +22,8 @@ public class ToEnding : MonoBehaviour, IPointerClickHandler
         if(!Inventory.imanager.IsEmpty() && Inventory.imanager.GetisSelected()){
             switch(Inventory.imanager.getId()){
                 case 2: // 판자
-                    if(PlayerDataManager.pdata.isHurt){
+                    SoundManager.instance.PlaySoundPlaceBoard();
+                    if (PlayerDataManager.pdata.isHurt){
                         endingType = EndingType.NORMAL;
                         endingNum = 2;
                     }

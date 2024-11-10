@@ -45,10 +45,6 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
         items = itemList.ItemList;
     }
 
-    void ObjectPlaySound(int objectId)
-    {
-        SoundManager.instance.ObjectPlaySound(objectId);
-    }
 
     public void SetItem(int id){
         if(!isEmpty){
@@ -56,7 +52,7 @@ public class Inventory : MonoBehaviour,IPointerClickHandler
         }
         isEmpty = false;
         itemId = id;
-        ObjectPlaySound(itemId);
+
         invenSlot.sprite = filledSprite;
         itemImg.gameObject.SetActive(true);
         itemImg.sprite = Resources.Load<Sprite>(Const.ITEMSP_PATH_BASE+itemId.ToString());

@@ -9,11 +9,14 @@ public class ChooseEnding : MonoBehaviour, IPointerClickHandler
     public int otherId;
     public int tempId;
     public int getConvId;
-    
+    public int soundId;
+
     [SerializeField] ConvSystem convSystem;
     [SerializeField] GameObject otherObj;
     public void OnPointerClick(PointerEventData eventData)
     {
+       
+
         if(!Inventory.imanager.IsEmpty()){
             convSystem.gameObject.SetActive(true);
             convSystem.chooseEnding = this;
@@ -24,10 +27,28 @@ public class ChooseEnding : MonoBehaviour, IPointerClickHandler
             Inventory.imanager.SetItem(thisId);
             convSystem.gameObject.SetActive(true);;
             convSystem.SetConv(getConvId);
+            PlayObjectSound();
             gameObject.SetActive(false);
         }
 
     }
+
+    void PlayObjectSound()
+    {
+        switch (soundId)
+        {
+            case 1:
+                SoundManager.instance.PlaySoundPickBoard();
+                break;
+            case 2:
+                SoundManager.instance.PlaySoundPickKey();
+                break;
+            default:
+                break;
+        }
+    }
+
+
     public void SwapItem(){
         if(otherId==Inventory.imanager.getId()){
             otherObj.SetActive(true);
