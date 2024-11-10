@@ -24,6 +24,7 @@ public class BreakObject : MonoBehaviour, IPointerClickHandler
             convSystem.SetConv(7003);
         }
         else if(!isBroken&&PlayerDataManager.pdata.isStr()){
+
             convSystem.SetConv(7004);
         }
         else{
