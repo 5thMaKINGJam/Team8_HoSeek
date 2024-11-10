@@ -160,5 +160,11 @@ void PlaySound()
         audioSource.clip = audioPlaceBoard;
         audioSource.Play();
     }
+
+    public void PlaySoundOpenDrawer()
+    {
+        audioSource.clip = audioOpenDrawer;
+        audioSource.Play();
+    }
 }
 
