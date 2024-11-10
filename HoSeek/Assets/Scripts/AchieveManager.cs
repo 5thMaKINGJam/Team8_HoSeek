@@ -110,5 +110,6 @@ public class AchieveManager : MonoBehaviour
     }
     public void StopTimer(){
         setTimer = false;
+        Debug.Log("Time: "+currTime+"sec");
     }
 }
