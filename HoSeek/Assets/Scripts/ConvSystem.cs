@@ -34,7 +34,6 @@ class ChoiceScript{
 public class ConvSystem : MonoBehaviour
 {
     [SerializeField] GameObject convWin;
-    [SerializeField] Image illustObj;
     [SerializeField] TextMeshProUGUI convText;
     [SerializeField] GameObject choiceWin;
     [SerializeField] Button[] buttons = new Button[4];
@@ -119,7 +118,6 @@ public class ConvSystem : MonoBehaviour
         convWin.SetActive(true);
 
         choiceWin.SetActive(false);
-        illustObj.gameObject.SetActive(false);
         convText.gameObject.SetActive(true);
 
         currScript = scriptList[n];
@@ -179,7 +177,6 @@ public class ConvSystem : MonoBehaviour
     void SetFullIllust(){
         convWin.SetActive(false);
         convText.gameObject.SetActive(true);
-        //illustObj.sprite = Resources.Load<Sprite>(Const.ILLUST_PATH_BASE +currScript.GetIllustNum().ToString());
     }
 
     void EndConv(){
