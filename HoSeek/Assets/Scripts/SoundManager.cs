@@ -47,6 +47,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(int id)
     {
+        audioSource.clip = null;
         switch (id)
         {
             case 1:
@@ -83,16 +84,6 @@ public class SoundManager : MonoBehaviour
         PlaySound();
     }
 
-    void PlaySound()
-    {
-        if (audioSource.isPlaying)
-        {
-            return;
-            //audioSource.Stop();
-        }
-        audioSource.Play();
-    }
-
 
     public void ObjectPlaySound(int objectId)
     {
@@ -113,5 +104,23 @@ public class SoundManager : MonoBehaviour
             }
         PlaySound();
     }
+
+
+    void PlaySound()
+    {
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+        if (audioSource.clip == null)
+        {
+            return;
+        }
+
+        // 설정된 클립을 재생합니다.
+        audioSource.Play();
+    }
+
+
 
 }
