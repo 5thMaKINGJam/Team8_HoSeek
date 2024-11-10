@@ -166,5 +166,13 @@ void PlaySound()
         audioSource.clip = audioOpenDrawer;
         audioSource.Play();
     }
+
+    public void PlaySoundClick()
+    {
+        if (audioClick != null)
+        {
+            audioSource.PlayOneShot(audioClick);
+        }
+    }
 }
 

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Stats : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource Click;
     public static int StatsSum = 10;
 
     public Text StrText;
@@ -33,6 +35,7 @@ public class Stats : MonoBehaviour
         Str = PlayerDataManager.pdata.str_stat;
         Int = PlayerDataManager.pdata.int_stat;
         Wis = PlayerDataManager.pdata.wis_stat;
+
 
         // StrUpButton.onClick.AddListener(StrUp);
         // StrDownButton.onClick.AddListener(StrDown);
@@ -135,7 +138,13 @@ public class Stats : MonoBehaviour
 
     public void OnStartButton()
     {
+        //AudioSource ButtonSound = GetComponent<AudioSource>();
+        //ButtonSound.Play();
         SaveStats();
+        Invoke("NextScene", 1f);
+    }
+    void NextScene()
+    {
         SceneManager.LoadScene("IntroScene");
     }
 
