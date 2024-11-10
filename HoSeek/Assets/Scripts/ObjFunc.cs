@@ -111,6 +111,10 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
         int invenEtc = int.Parse(Inventory.imanager.getEtc());
         if( invenItem == target && invenEtc == id){
             Inventory.imanager.UseItem();
+            if (id == 24)
+            {
+                SoundManager.instance.PlaySoundOpenDrawer();
+            }
             string[] actions = action.Split('_');
             for(int i = 0; i<actions.Length; i++){
                 Invoke(actions[i],0f);
