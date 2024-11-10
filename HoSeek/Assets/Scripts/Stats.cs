@@ -21,23 +21,26 @@ public class Stats : MonoBehaviour
     public Button WisDownButton;
     public Button StartButton;
 
-    private int Str;
-    private int Int;
-    private int Wis;
+    private int Str = 0;
+    private int Int = 0;
+    private int Wis = 0;
 
     void Start()
     {
+        PlayerDataManager.pdata.PrintStat();
+        StatsSum = 10;
+        AchieveManager.achvManager.SetTimer();
         Str = PlayerDataManager.pdata.str_stat;
         Int = PlayerDataManager.pdata.int_stat;
         Wis = PlayerDataManager.pdata.wis_stat;
 
-        StrUpButton.onClick.AddListener(StrUp);
-        StrDownButton.onClick.AddListener(StrDown);
-        IntUpButton.onClick.AddListener(IntUp);
-        IntDownButton.onClick.AddListener(IntDown);
-        WisUpButton.onClick.AddListener(WisUp);
-        WisDownButton.onClick.AddListener(WisDown);
-        StartButton.onClick.AddListener(OnStartButton);
+        // StrUpButton.onClick.AddListener(StrUp);
+        // StrDownButton.onClick.AddListener(StrDown);
+        // IntUpButton.onClick.AddListener(IntUp);
+        // IntDownButton.onClick.AddListener(IntDown);
+        // WisUpButton.onClick.AddListener(WisUp);
+        // WisDownButton.onClick.AddListener(WisDown);
+        // StartButton.onClick.AddListener(OnStartButton);
 
         UpdateUI();
     }
@@ -58,7 +61,7 @@ public class Stats : MonoBehaviour
         WisDownButton.interactable = Wis > 0;
     }
 
-    void StrUp()
+    public void StrUp()
     {
         if (StatsSum > 0)
         {
@@ -69,7 +72,7 @@ public class Stats : MonoBehaviour
         }
     }
 
-    void StrDown()
+    public void StrDown()
     {
         if (Str > 0)
         {
@@ -80,7 +83,7 @@ public class Stats : MonoBehaviour
         }
     }
 
-    void IntUp()
+    public void IntUp()
     {
         if (StatsSum > 0)
         {
@@ -91,7 +94,7 @@ public class Stats : MonoBehaviour
         }
     }
 
-    void IntDown()
+    public void IntDown()
     {
         if (Int > 0)
         {
@@ -102,7 +105,7 @@ public class Stats : MonoBehaviour
         }
     }
 
-    void WisUp()
+    public void WisUp()
     {
         if (StatsSum > 0)
         {
@@ -113,7 +116,7 @@ public class Stats : MonoBehaviour
         }
     }
 
-    void WisDown()
+    public void WisDown()
     {
         if (Wis > 0)
         {
@@ -127,9 +130,10 @@ public class Stats : MonoBehaviour
     void SaveStats()
     {
         PlayerDataManager.pdata.SetStat(Int, Str, Wis);
+        PlayerDataManager.pdata.PrintStat();
     }
 
-    void OnStartButton()
+    public void OnStartButton()
     {
         SaveStats();
         SceneManager.LoadScene("IntroScene");
