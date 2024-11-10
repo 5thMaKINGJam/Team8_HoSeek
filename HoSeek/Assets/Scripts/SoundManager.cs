@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -8,7 +7,9 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     private AudioSource audioSource;
+    private AudioSource bgmAudioSource;
 
+    public AudioClip bgmClip;
     public AudioClip audioEat;
     public AudioClip audioJumpScare;
     public AudioClip audioCantOpen;
@@ -43,11 +44,34 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        bgmAudioSource = gameObject.AddComponent<AudioSource>();
+        bgmAudioSource.loop = true;
+        bgmAudioSource.volume = 0.5f;
+        PlayBGM();
+    }
+
+    public void PlayBGM()
+    {
+        if (bgmClip != null)
+        {
+            bgmAudioSource.clip = bgmClip;
+            bgmAudioSource.Play();
+        }
+    }
+
+    public void StopBGM()
+    {
+        if (bgmAudioSource.isPlaying)
+        {
+            bgmAudioSource.Stop();
+        }
     }
 
     public void PlaySound(int id)
     {
         audioSource.clip = null;
+
         switch (id)
         {
             case 1:
@@ -79,34 +103,15 @@ public class SoundManager : MonoBehaviour
             case 9001:
                 audioSource.clip = audioPickGem;
                 break;
+            default:
+                return;
         }
 
         PlaySound();
     }
 
 
-    public void ObjectPlaySound(int objectId)
-    {
-            switch (objectId)
-        {
-            case 0: case 1:
-                audioSource.clip = audioPickKey;
-                break;
-
-            case 2:
-                audioSource.clip = audioPickBoard;
-                break;
-
-            case 3:
-                audioSource.clip = audioOpenCloset;
-                break;
-
-            }
-        PlaySound();
-    }
-
-
-    void PlaySound()
+void PlaySound()
     {
         if (audioSource.isPlaying)
         {
@@ -117,10 +122,43 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        // 설정된 클립을 재생합니다.
         audioSource.Play();
     }
 
+    public void PlaySoundChop()
+    {
+        audioSource.clip = audioChop;
+        audioSource.Play();
+    }
 
+    public void PlaySoundJumpScare()
+    {
+        audioSource.clip = audioJumpScare;
+        audioSource.Play();
+    }
 
+    public void PlaySoundOpenCloset()
+    {
+        audioSource.clip = audioOpenCloset;
+        audioSource.Play();
+    }
+
+    public void PlaySoundPickBoard()
+    {
+        audioSource.clip = audioPickBoard;
+        audioSource.Play();
+    }
+
+    public void PlaySoundPickKey()
+    {
+        audioSource.clip = audioPickKey;
+        audioSource.Play();
+    }
+
+    public void PlaySoundPlaceBoard()
+    {
+        audioSource.clip = audioPlaceBoard;
+        audioSource.Play();
+    }
 }
+

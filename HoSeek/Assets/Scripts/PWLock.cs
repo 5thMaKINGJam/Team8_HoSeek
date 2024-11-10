@@ -38,23 +38,19 @@ public class PWLock : MonoBehaviour
         CheckAnswer();
     }
 
-    void ObjectPlaySound(int objectId)
-    {
-        SoundManager.instance.ObjectPlaySound(objectId);
-    }
-
     void CheckAnswer(){
         currAnswer = "";
         for(int i = 0; i<pwInt.Length; i++){
             currAnswer+=pwInt[i].ToString();
         }
-        if(currAnswer==pwAnswer){
-            Debug.Log("Correct Answer: "+currAnswer.ToString());
+        if (currAnswer == pwAnswer) {
+            Debug.Log("Correct Answer: " + currAnswer.ToString());
             target.unabled = false;
             target.MainObj = activateObj;
             gameObject.SetActive(false);
-            ObjectPlaySound(3);
+            SoundManager.instance.PlaySoundOpenCloset();
         }
+        
         else{
             Debug.Log("PW Wrong: "+currAnswer.ToString());
         }
