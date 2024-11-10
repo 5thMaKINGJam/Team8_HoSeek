@@ -2419,6 +2419,7 @@ MonoBehaviour:
   otherId: 2
   tempId: 0
   getConvId: 0
+  soundId: 0
   convSystem: {fileID: 2004714071}
   otherObj: {fileID: 1000711032}
 --- !u!1 &538714822
@@ -4782,6 +4783,7 @@ MonoBehaviour:
   otherId: 1
   tempId: 0
   getConvId: 0
+  soundId: 0
   convSystem: {fileID: 2004714071}
   otherObj: {fileID: 520031634}
 --- !u!82 &1000711039
