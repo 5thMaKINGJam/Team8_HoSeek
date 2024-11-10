@@ -11,14 +11,16 @@ public class CreditMove : MonoBehaviour
     private float targetPositionY;
     private float clickDelay = 2f;
     private bool canClick = false;
-    public Image image;
+    public GameObject image;
     private bool checkbool = false;
+    bool crtFlag = false;
 
 
     void Start()
     {
         targetPositionY = creditImage.anchoredPosition.y + 2160f;
         StartCoroutine(EnableClick());
+        image.SetActive(false);
     }
 
     void Update()
@@ -27,17 +29,12 @@ public class CreditMove : MonoBehaviour
         {
             creditImage.anchoredPosition += Vector2.up * scrollSpeed * Time.deltaTime;
         }
-        else
+        else if(!crtFlag)
         {
+            crtFlag=true;
             StartCoroutine(Out());
             StartCoroutine(LoadMainScene());
         }
-        if(checkbool){
-            Color color = image.color;
-            color.a -= Time.deltaTime * 0.8f;
-            image.color = color;
-        }
-
         if (canClick && Input.GetMouseButtonDown(0))
         {
             SceneManager.LoadScene("InitialScene");
@@ -60,13 +57,15 @@ public class CreditMove : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         gameObject.GetComponent<Image>().color  = new Color(0,0,0,1.0f);
-        image.color  = new Color(image.color.r, image.color.g, image.color.b,1.0f);
+        image.SetActive(true);
+        Color color = image.GetComponent<Image>().color;
+        image.GetComponent<Image>().color  = new Color(color.r, color.g, color.b,1.0f);
         yield return new WaitForSeconds(1f);
-        Color color = image.color;
+        color = image.GetComponent<Image>().color;
         while (color.a > 0f)
         {
             color.a -= Time.deltaTime/3f;
-            image.color = color;
+            image.GetComponent<Image>().color = color;
         }
     }
 }

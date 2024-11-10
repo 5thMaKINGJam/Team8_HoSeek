@@ -19,6 +19,7 @@ public class AchieveManager : MonoBehaviour
     string newlyAchive="";
     bool setTimer = false;
     float currTime = 0f;
+    public bool isNewAchv = false;
     void Awake(){
         //PlayerPrefs.DeleteAll();
         if(achvManager == null){
@@ -38,6 +39,10 @@ public class AchieveManager : MonoBehaviour
         PlayerPrefs.Save();
     }
     public void AppendNewAchieve(){
+        isNewAchv = false;
+        if(newlyAchive!=""){
+            isNewAchv = true;
+        }
         string[] ach = newlyAchive.Split('_');
         newlyAchive = "";
         for(int i = 1; i<ach.Length; i++){
