@@ -7,6 +7,9 @@ public class ChooseEnding : MonoBehaviour, IPointerClickHandler
 {
     public int thisId;
     public int otherId;
+    public int tempId;
+    public int getConvId;
+    
     [SerializeField] ConvSystem convSystem;
     [SerializeField] GameObject otherObj;
     public void OnPointerClick(PointerEventData eventData)
@@ -19,6 +22,8 @@ public class ChooseEnding : MonoBehaviour, IPointerClickHandler
         }
         else{
             Inventory.imanager.SetItem(thisId);
+            convSystem.gameObject.SetActive(true);;
+            convSystem.SetConv(getConvId);
             gameObject.SetActive(false);
         }
 

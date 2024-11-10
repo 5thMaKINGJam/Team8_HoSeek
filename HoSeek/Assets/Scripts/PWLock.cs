@@ -38,6 +38,11 @@ public class PWLock : MonoBehaviour
         CheckAnswer();
     }
 
+    void ObjectPlaySound(int objectId)
+    {
+        SoundManager.instance.ObjectPlaySound(objectId);
+    }
+
     void CheckAnswer(){
         currAnswer = "";
         for(int i = 0; i<pwInt.Length; i++){
@@ -48,6 +53,7 @@ public class PWLock : MonoBehaviour
             target.unabled = false;
             target.MainObj = activateObj;
             gameObject.SetActive(false);
+            ObjectPlaySound(3);
         }
         else{
             Debug.Log("PW Wrong: "+currAnswer.ToString());

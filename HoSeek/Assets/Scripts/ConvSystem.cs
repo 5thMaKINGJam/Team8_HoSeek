@@ -107,7 +107,12 @@ public class ConvSystem : MonoBehaviour
         currIdx = choiceScripts[choiceIdx].choiceGoto[num];
         SetConv(currIdx);   
     }
-    
+
+    void PlaySound(int currIdx)
+    {
+        SoundManager.instance.PlaySound(currIdx);
+    }
+
     public void SetConv(int n){
         currIdx = n;
         convWin.SetActive(true);
@@ -139,6 +144,8 @@ public class ConvSystem : MonoBehaviour
                 Debug.Log("TYPE ERROR: "+n+"th script");
                 break;
         }
+        PlaySound(n);
+
     }
 
     void SetLiterate(){
