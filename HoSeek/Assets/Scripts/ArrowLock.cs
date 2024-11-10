@@ -20,13 +20,11 @@ public class ArrowLock : MonoBehaviour
         currAnswer = "";
         for(int i = 0; i<pwInt.Length; i++){
             pwInt[i] = 0;
-            arrowButton[i].GetComponentInChildren<TextMeshProUGUI>().text = pwInt[i].ToString("00");
         }
     }
 
     public void ClickButton(int idx){
         pwInt[idx]++;
-        arrowButton[idx].GetComponentInChildren<TextMeshProUGUI>().text = pwInt[idx].ToString("00");
         currAnswer = "";
         for(int i = 0; i<pwInt.Length; i++){
             currAnswer+=pwInt[i].ToString();
