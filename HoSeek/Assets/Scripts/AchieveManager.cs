@@ -77,6 +77,7 @@ public class AchieveManager : MonoBehaviour
         }
         if(achVals[achieveTitle[0]]!=-1&&currTime<60f){
             newlyAchive+="_"+achieveTitle[0];
+            currTime = 0f;
         }
     }
 

@@ -145,14 +145,18 @@ void PlaySound()
 
     public void PlaySoundPickBoard()
     {
+        Debug.Log("PlaySoundPickBoard()");
         audioSource.clip = audioPickBoard;
         audioSource.Play();
+        Debug.Log(audioSource.isPlaying);
     }
 
     public void PlaySoundPickKey()
     {
+        Debug.Log("PlaySoundPickKey()");
         audioSource.clip = audioPickKey;
         audioSource.Play();
+        Debug.Log(audioSource.isPlaying);
     }
 
     public void PlaySoundPlaceBoard()

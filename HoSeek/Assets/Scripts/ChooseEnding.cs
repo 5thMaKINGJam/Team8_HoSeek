@@ -39,9 +39,11 @@ public class ChooseEnding : MonoBehaviour, IPointerClickHandler
         {
             case 1:
                 SoundManager.instance.PlaySoundPickBoard();
+                Debug.Log("sound call 1");
                 break;
             case 2:
                 SoundManager.instance.PlaySoundPickKey();
+                Debug.Log("sound call 2");
                 break;
             default:
                 break;
@@ -50,6 +52,7 @@ public class ChooseEnding : MonoBehaviour, IPointerClickHandler
 
 
     public void SwapItem(){
+        PlayObjectSound();
         if(otherId==Inventory.imanager.getId()){
             otherObj.SetActive(true);
         }

@@ -120,6 +120,10 @@ public class ObjFunc : MonoBehaviour,IPointerClickHandler
                 Invoke(actions[i],0f);
             }
         }
+        else{
+            Unabled();
+            return;
+        }
     }
 
     void ChangeForm(){
